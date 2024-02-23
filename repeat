@@ -1,0 +1,14 @@
+def is_duplicate(arr):
+    seen = set()
+    for element in arr:
+        if element in seen:
+            return True
+        seen.add(element)
+    return False
+
+# Example usage
+array1 = [1, 2, 3, 4, 5]
+print("Array1 has duplicates:", is_duplicate(array1))
+
+array2 = [1, 2, 3, 4, 5, 1]
+print("Array2 has duplicates:", is_duplicate(array2))
