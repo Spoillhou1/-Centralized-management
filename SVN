@@ -1,0 +1,31 @@
+import pysvn
+
+class SVNClient:
+    def __init__(self, repo_url, username, password):
+        self.repo_url = repo_url
+        self.username = username
+        self.password = password
+        self.client = pysvn.Client()
+
+    def checkout(self, local_path):
+        self.client.checkout(self.repo_url, local_path, username=self.username, password=self.password)
+
+    def update(self, local_path):
+        self.client.update(local_path)
+
+    def commit(self, local_path, message):
+        self.client.checkin([local_path], message)
+
+# Example usage
+if __name__ == "__main__":
+    repo_url = "http://svn.example.com/repo"
+    username = "user"
+    password = "password"
+    local_path = "/path/to/local/repository"
+    message = "Commit message"
+
+    svn_client = SVNClient(repo_url, username, password)
+    svn_client.checkout(local_path)
+    # Make changes to files in local_path
+    svn_client.update(local_path)
+    svn_client.commit(local_path, message)
